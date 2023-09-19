@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Film Tavsiye Sitesi</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+
+  <script type="text/javascript">
+    var films = {{suggestions|tojson}};
+    $(document).ready(function(){
+      $("#myModal").modal('show');
+    });
+  </script>
+
+</head>
+
+
+<body id="content" style="font-family: 'Noto Sans JP', sans-serif;">
+<div class="body-content">
+	<div class="ml-container" style="display: block;">
+		
+    <center><br><br><h1 class="app-title">FİLM TAVSİYE SİSTEMİ</h1></center><br><br><br>
+    <div class="form-group shadow-textarea" style="margin-top: 30px;text-align: center;color: rgb(255, 255, 255);">
+        <input type="text" name="movie" class="movie form-control" id="autoComplete" autocomplete="off" placeholder="Film ismini giriniz" style="background-color: #ffffff;border-color:#ffffff;width: 60%;color: #0a0a49" required="required" />
+        <br>
+        
+        <footer class="footer">
+          <br> 
+          <div class="social" style="margin-bottom: 8px">
+          <a class="social-icons" href="https://github.com/salihbagli" target="_blank"><i class="fa fa-github-alt" style="font-size:24px;color: #76ff1b"></i></a>
+          <a class="social-icons" href="https://linkedin.com/in/salihbagli" target="_blank"><i class="fa fa-linkedin-square" style="font-size:24px;color: #76ff1b"></i></a>
+          <a class="social-icons" href="https://www.instagram.com/salih.baglii" target="_blank"><i class="fa fa-instagram" style="font-size:24px;color: #76ff1b"></i></a>
+          <a class="social-icons" href="https://twitter.com/salih_bagli" target="_blank"><i class="fa fa-twitter" style="font-size:24px;color: #76ff1b"></i></a>
+        </div>
+        </footer>
+    </div>
+
+    <div class="form-group" style="text-align: center;">
+      <button class="btn btn-primary btn-block movie-button" style="background-color: #76ff1b;text-align: center;border-color: #76ff1b;width:120px;" disabled="true" >Giriş</button><br><br>
+    </div>
+	</div>
+
+  <div id="loader" class="text-center">
+  </div>
+  
+  <div class="fail">
+    <center><h3>Üzgünüm! İstediğiniz film veritabanımızda yok.
+      Lütfen yazım denetimi yapın veya diğer filmlerle deneyin!</h3></center>
+  </div>
+
+	<div class="results">
+    <center>
+      <h2 id="name" class="text-uppercase"></h2>
+    </center>
+	</div>
+	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #76ff1b;color: rgb(0, 0, 0);">
+          <h5 class="modal-title" style="text-align: center;" id="exampleModalLabel3">Merhaba</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="color: white">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Aradığınız filmi yazarken otomatik olarak önerilmezse endişelenmeyin. Sadece film adını yazın ve "giriş" düğmesine tıklayın.</p>
+        </div>
+        <div class="modal-footer" style="text-align: center;">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hadi Başlayalım!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+	
+
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='autocomplete.js')}}"></script>
+
+  <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+</body>
+</html>
